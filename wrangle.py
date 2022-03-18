@@ -15,7 +15,6 @@ def wrangle_zillow(use_cache=True):
 			# LEFT JOIN payment_types USING (payment_type_id)
 			# ''',
         get_db_url('zillow'))     
-    df.to_csv('zillow.csv', index=False)
     cols=['bedroomcnt','bathroomcnt', 'calculatedfinishedsquarefeet', 'taxvaluedollarcnt', 'yearbuilt', 'taxamount', 'fips', 'propertylandusedesc']
     df=df[cols]
     df=df[df.propertylandusedesc=='Single Family Residential']
@@ -37,7 +36,7 @@ def wrangle_zillow(use_cache=True):
     df.beds=df.beds.astype('string')
     df.year=df.year.astype('Int64')
     df.fips=df.fips.astype('Int64')
-
+    df.to_csv('zillow.csv', index=False)
 
 
     # '''
@@ -73,5 +72,33 @@ def wrangle_zillow(use_cache=True):
 	# train[col] = imputer.fit_transform(train[col])
 	# validate[col] = imputer.transform(validate[col])
 	# test[col] = imputer.transform(test[col])
+
+    # def scale_data(train, validate, test, return_scaler=False):
+    #     '''
+    #     Scales the 3 data splits.
+        
+    #     takes in the train, validate, and test data splits and returns their scaled counterparts.
+        
+    #     If return_scaler is true, the scaler object will be returned as well.
+    #     '''
+    #     columns_to_scale = ['bedrooms', 'bathrooms', 'tax_value', 'taxamount', 'area']
+        
+    #     train_scaled = train.copy()
+    #     validate_scaled = validate.copy()
+    #     test_scaled = test.copy()
+        
+    #     scaler = MinMaxScaler()
+    #     scaler.fit(train[columns_to_scale])
+        
+    #     train_scaled[columns_to_scale] = scaler.transform(train[columns_to_scale])
+    #     validate_scaled[columns_to_scale] = scaler.transform(validate[columns_to_scale])
+    #     test_scaled[columns_to_scale] = scaler.transform(test[columns_to_scale])
+        
+    #     if return_scaler:
+    #         return scaler, train_scaled, validate_scaled, test_scaled
+    #     else:
+    #         return train_scaled, validate_scaled, test_scaled
+
+
 
     return df
