@@ -24,3 +24,4 @@ import seaborn as sns
 # state properties
 np.random.seed(123)
 pd.set_option("display.max_columns", None)
+pd.set_option("display.max_rows", None)
