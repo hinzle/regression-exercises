@@ -15,7 +15,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression, LinearRegression
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler, QuantileTransformer
-from sklearn.feature_selection import f_regression
+from sklearn.feature_selection import f_regression, SelectKBest, RFE
 
 
 # visualizations
